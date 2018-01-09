@@ -1,0 +1,169 @@
+@font-face {
+ font-family: 'Arial Rounded MT Bold';
+  src: url(fonts/ARLRDBD.TTF);
+}
+
+body {
+	margin: 0pt;
+	padding: 0pt;
+	font-family: 'Arial Rounded MT Bold', Arial, Helvetica, san-serif;
+}
+
+h1 {
+	float: left;
+	margin-top: 0pt;
+	padding-top: 10pt;
+	color: #29ABE2;
+	float: left;
+	margin-bottom: 10pt;
+}
+
+p.text {
+	line-height: 17pt;
+    letter-spacing: 0.5px;
+    font-family: Arial;
+}
+
+button {
+	height: 35pt;
+	border: none;
+	font-size: medium;
+	font-family: 'Arial Rounded MT Bold', Arial, Helvetica, san-serif;
+	border-radius: 5pt;
+	outline: none;
+}
+
+input[type=checkbox] {
+	transform: scale(1.5);
+	margin-left: 2pt;
+	margin-right: 5pt;
+	margin-bottom: 15pt
+}
+
+select {
+    font-size: large;
+    border: 2pt #29ABE2 solid;
+    border-radius: 5pt;
+    width: 100%;
+    font-family: 'Arial Rounded MT Bold', Arial, Helvetica, san-serif;
+    -webkit-appearance: none; 
+    -moz-appearance: none;
+    color: #29ABE2;
+    text-align: center;
+    appearance: none;
+    background-color: white;
+    padding: 8px;
+    padding-left: 27pt;
+    outline: none;
+    background-image:url('img/drop.svg');
+    background-size: 12pt; 
+    background-repeat: no-repeat;
+    background-position: 9pt 11pt;
+    margin-top: 0pt;
+    height: 36pt;
+    margin-bottom: 12pt;
+    background-color: transparent;
+
+}
+
+label {
+	margin-right: 13pt;
+	color: #29ABE2;
+}
+
+p.question {
+	margin-top: 25pt;
+}
+
+p#final_note {
+	font-size: x-small;
+}
+
+.feature #real_hsk {
+	background-image: url(img/real_hsk.svg)
+}
+
+.feature #instant_feedback {
+	background-image: url(img/instant_feedback.svg)
+}
+
+.feature #track_words {
+	background-image: url(img/track_words.svg)
+}
+
+.feature #mobile_experience {
+	background-image: url(img/mobile_experience.svg)
+}
+
+.feature #track_progress {
+	background-image: url(img/track_progress.svg)
+}
+
+.feature #ai_advice {
+	background-image: url(img/ai_advice.svg)
+}
+
+.feature #free_forever {
+	background-image: url(img/free_forever.svg)
+}
+
+
+button#start_practicing {
+	background-color: #29ABE2;
+	display: none;
+}
+
+button#login {
+	color: #29ABE2;
+	display: none;
+	background-color: transparent;
+}
+
+#tm_logo {
+	font-size: 5pt;
+	position: relative;
+	bottom: 12pt;
+}
+
+#cover {
+	width: 100%;
+	padding-bottom: 85%;
+	background-image: url(img/cover.svg);
+	background-repeat: no-repeat;
+	background-size: 100%;
+	background-position-y: 0pt;
+}
+
+#main_container {
+	padding: 0pt 10pt;
+	max-width: 600px;
+	margin: 0pt auto;
+}
+
+#auxiliary_img {
+	width: 100%;
+	padding-bottom: 75%;
+	background-image: url(img/auxiliary.svg);
+	background-repeat: no-repeat;
+	background-size: 100%;
+}
+
+.feature {
+	overflow: auto;
+}
+
+div.feature_img {
+	height: 60pt;
+	width: 60pt;
+	float: left;
+	background-repeat: no-repeat;;
+	background-size: 60px;
+	background-position: center; 
+}
+
+a#contact_email {
+	display: block;
+	text-decoration: none;
+	color: #29ABE2;
+	margin-top: 30pt;
+}

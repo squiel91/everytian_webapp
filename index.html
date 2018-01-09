@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-20058646-2"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'UA-20058646-2');
+        </script>
+		<meta charset="utf-8">
+		<title>Everytiān</title>
+		<link rel='shortcut icon' type='image/x-icon' href='favicon.ico'/>
+		<meta name="mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		<link rel="manifest" href="/manifest.json">
+		<script src="lib/jquery-3.2.1.min.js"></script>
+		<script src="lib/vue.js"></script>
+		<script src="https://cdn.jsdelivr.net/vue/2.0.0-rc/vue.min.js"></script>
+        <script src="https://cdn.ravenjs.com/3.21.0/vue/raven.min.js"
+    crossorigin="anonymous"></script>
+        <script>Raven.config('https://879905145a33410b8df3744d044e18bf@sentry.io/266524').install();</script>
+		<script src="lib/underscore-min.js"></script>
+		<script src="helpers.js"></script>
+		<script src="lib/minidb-0.1.js"></script>
+		<script src="core/word.js"></script>
+		<script src="core/exercise.js"></script>
+		<script src="lib/router.js"></script>
+		<script src="vue_select.js"></script>
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<link rel="stylesheet" type="text/css" href="lib/docker.css">
+		<script src="lib/jquery-ui.js"></script>
+		<script src="lib/convert_chinese.js"></script>
+
+		<script>	
+			if (!window.location.search.startsWith('?exercise=') && !localStorage['levels']){
+				window.location.replace("sign.html");
+			}
+		</script>
+        <!-- Hotjar Tracking Code for everytian.com -->
+        <script>
+            (function(h,o,t,j,a,r){
+                h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+                h._hjSettings={hjid:737703,hjsv:6};
+                a=o.getElementsByTagName('head')[0];
+                r=o.createElement('script');r.async=1;
+                r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+                a.appendChild(r);
+            })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+        </script>
+	</head>
+	<body>
+		<section id="practice_tab">
+			<div id="board_container">
+				<div id="board"></div>
+			</div>
+		</section>
+		
+		<section id="progress_tab">
+			<p id="advice"></p>
+			<div id="select_level"></div>
+			<div class="progress_section" id="overall_score">
+				<div class="progress_bar big">
+					<img class="left" src="img/mark_left.png">
+					<img class="right" src="img/mark_right.png">
+					<div class="score">Overall <span id="score">0</span> / <span id="total">0</span></div>
+					<div class="percentage"><span id="percentage">0</span> %</div>
+				</div>
+				<div class="passing_score">60 % passing score</div>
+			</div>
+
+			<div class="progress_section" id="reading_score">
+				<h1>Reading</h1>
+				<div class="progress_bar small"></div>
+				<div class="score"><span id="score">0</span> / <span id="total">0</span></div>
+				<div class="percentage"><span id="percentage">0</span> %</div>
+			</div>
+
+			<div class="progress_section" id="listening_score">
+				<h1>Listening</h1>
+				<div class="progress_bar small"></div>
+				<div class="score"><span id="score">0</span> / <span id="total">0</span></div>
+				<div class="percentage"><span id="percentage">0</span> %</div>
+			</div>
+
+			<div class="challenging_words_section">
+				<h1><span id="qty_challenging_words">No</span> challenging word<span id="word_words">s</span><span id="yet_challenging_words"> yet</span></h1>
+				<div id="words_levels"></div>
+				<div id="anki">Download Anki's flashcards</div>
+			</div>
+
+			<div class="progress_section" id="exercises_completed" style="margin-bottom: 20pt">
+				<h1>Completed Exercises</h1>
+				<div class="progress_bar small"></div>
+				<div class="score"><span id="score">0</span> / <span id="total">0</span></div>
+				<div class="percentage"><span id="percentage">0</span> %</div>
+			</div>
+		</section>
+		<section id="settings_tab">
+			<div class="settings_section signup_form just_not_logged">
+				<h1>Secure your progress</h1>
+				<p>Create an account to save your progress and practice on any device.</p>
+				<input type="text" placeholder="Your email" id="email"><span class="error" id="error_email"></span>
+				<input type="text" placeholder="New password" style="margin-bottom: 0pt;" id="pass"><span class="error" id="error_pass"></span>
+				<button onclick="sign_up();" class="change_status">Sign up</button>
+			</div>
+
+ 			<div class="settings_section change_level">
+                <div class="multiple_select">
+    				<div class="header">Change HSK levels</div>
+    				<div class="selecting_level" style="display: none;">
+    					<div class="hsk">
+    						<input type="checkbox" value="1" id="hsk_1">
+    						<label class="checkbox" for="hsk_1"><label for="hsk_1">HSK 1</label></label>
+    					</div>
+    					<div class="hsk">
+    						<input type="checkbox" value="2" id="hsk_2">
+    						<label class="checkbox" for="hsk_2"><label for="hsk_2">HSK 2</label></label>
+    					</div>
+    					<div class="hsk">
+    						<input type="checkbox" value="3" id="hsk_3">
+    						<label class="checkbox" for="hsk_3"><label for="hsk_3">HSK 3</label></label>
+    					</div>
+    					<div class="hsk">
+    						<input type="checkbox" value="4" id="hsk_4">
+    						<label class="checkbox" for="hsk_4"><label for="hsk_4">HSK 4</label></label>
+    					</div>
+    					<div class="hsk">
+    						<input type="checkbox" value="5" id="hsk_5">
+    						<label class="checkbox" for="hsk_5"><label for="hsk_5">HSK 5</label></label>
+    
+    					</div>
+    					<div class="hsk">
+    						<input type="checkbox" value="6" id="hsk_6">
+    						<label class="checkbox" for="hsk_6"><label for="hsk_6">HSK 6</label></label>
+    					</div>
+    				</div>
+    				<div class="button" style="display: none;">Change now</div>      
+			    </div>
+			</div>
+			<div class="settings_section">
+				<div class="section_heading">
+					<h1 onclick="if (localStorage['offline_words']) { offline_words() };"><input type="checkbox" onclick="offline_words();" id="offline_words">
+					<label class="checkbox" for="offline_words"></label>Offline words</h1>
+				</div>
+				<p class="explanation">Download the words to access them offline.</p>
+			</div>
+
+			<div class="settings_section">
+				<div class="section_heading">
+					<h1><input type="checkbox" onclick="change_word_spacing(event)" id="word_spacing">
+					<label class="checkbox" for="word_spacing"></label>Word spacing</h1>
+				</div>
+				<p class="explanation">During correction time, words will be showed separated.</p>
+			</div>
+
+			<div class="settings_section">
+				<div class="section_heading">
+				    <h1><input type="checkbox" id="convert_trad" onclick="change_traditional(event)">
+					<label class="checkbox" for="convert_trad"></label>Traditional writing</h1>
+				</div>
+				<p class="explanation">Switch between traditional and simplified writing.</p>
+			</div>
+
+			<div class="settings_section just_logged">
+				<h1 style="color: #29ABE2" onclick="if(confirm('Are you sure you want to sign out?')){localStorage.clear(); window.location.replace('sign.html')};">Log out</h1>
+				<p class="explanation">You will recover your progress whenever you log in again.</p>
+			</div>
+
+			<div class="settings_section alert just_not_logged">
+				<h1 onclick="if(confirm('Are you sure you want to delete it all?')){localStorage.clear(); window.location.replace('sign.html')};">Delete all progress</h1>
+				<p class="explanation">There will not be a way to recover it.</p>
+			</div>
+
+			<div class="settings_section" style="margin-top: 40pt;">
+				<p>Write me to <a href="mailto:ezequiel@everytian.com">ezequiel@everytian.com</a> for any feedback, doubt, recommendation or if you want to collaborate with the project.</p>
+				<p>I use the <a href="http://english.hanban.org/">Confucius institute</a> mock exams, <a href="https://cc-cedict.org/">CC-CEDICT</a> for the word definitions and <a href="https://tatoeba.org">Tatoeba</a> for the example sentences.</p>
+			</div>
+		</section>
+		<div id="local_options">
+			<div class="option zoom" id="zoom_in" onclick="zoom_in()">
+				<div>ZOOM IN</div>
+			</div>
+			<div class="option zoom" id="zoom_out" onclick="zoom_out()">
+				<div>ZOOM OUT</div>
+			</div>
+			<div class="option community" id="share" onclick="share()">
+				<div>SHARE</div>
+			</div>
+			<div class="option community" id="feedback" onclick="feedback()">
+				<div>FEEDBACK</div>
+			</div>
+			<div id="share_block" class="optionblock">
+					<a class="social close_social" onclick="close_social()"></a>
+					
+					<a class='social' id='twitter' onclick="$(this).attr('href', 'https://twitter.com/intent/tweet?text=Help me with this chinese exercise! ' + window.location.href + ' #everytian');" href="#"></a>
+  					
+  					<a class='social' id='facebook' onclick="$(this).attr('href', 'https://www.facebook.com/sharer/sharer.php?u=everytian.com' + window.location.search);" href="#"></a>
+  					
+  					<a class='social' id='whatsapp' onclick="$(this).attr('href', 'whatsapp://send?text=Help me with this chinese exercise! ' + window.location.href);" href="#" data-action="share/whatsapp/share"></a>
+			</div>
+			<div id="feedback_block" class="optionblock">
+
+				<a class="social close_social" onclick="close_feedback()"></a>
+				<div id="feedback_sending" style="color: #7f8c8d; font-size: 12pt; position: relative; top: -28pt; margin-left: 47pt; display: none;">Sending feedback...</div>
+				<div id="feedback_error" style="color: #e74c3c;font-size: 12pt;position: relative;top: -28pt;margin-left: 47pt; display: none;">Could not upload the feedback! Please send me an email to ezequiel@everytian.com</div>
+				<div id="feedback_success" style="color: #2ecc71;font-size: 12pt;position: relative;top: -28pt;margin-left: 47pt; display: none;">Thank you! I will go over your feedback soon.</div>
+				<select id="feedback_type" style="    font-size: 16pt;position: relative;top: -14pt;width: 190pt;">
+					<option value='segmentation'>Segmentation mistake</option>
+					<option value='translation'>Word definition mistake</option>
+					<option value='new_feature'>New feature</option>
+					<option value='other'>Other</option>
+				</select><br>
+				<textarea id="feedback_message" placeholder="[Optional] Write some more..." style="    margin-left: 47pt;position: relative;top: -12pt; border-top-width: 0px; width: 185pt;height: 40pt;"></textarea><br>
+				<button id='feedback_submit' style="color: white; background-color: #3498db; border: 6pt solid #3498db; font-size: 14pt; width: 190pt; margin-left: 47pt; position: relative;top: -15pt;">Send Feedback</button><br>
+				<p id="feedback_email" style="color: black;font-size: larger;position: relative;top: -15pt;margin-left: 47pt;">You can also write me to <a href='mailto:ezequiel@everytian.com'>ezequiel@everytian.com</a>.</p>
+			</div>
+		</div>
+		<div id="dockbar" class="practice">
+			<div id="progress">
+				<p>PROGRESS</p>
+			</div>
+			<div id="settings">
+				<p>SETTINGS</p>
+			</div>
+			<div id="practice">
+				<p>PRACTICE</p>
+			</div>
+		</div>
+		<script src="main.js"></script>	
+	</body>
+</html>

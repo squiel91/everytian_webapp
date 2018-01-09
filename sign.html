@@ -1,0 +1,128 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-20058646-2"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'UA-20058646-2');
+        </script>
+		<meta charset="utf-8">
+		<title>Everytiān</title>
+		<link rel="manifest" href="/manifest.json">
+		<link rel='shortcut icon' type='image/x-icon' href='favicon.ico'>
+		<meta name="mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="sign.css">
+		
+        <script src="lib/jquery-3.2.1.min.js"></script>
+        <script src="lib/vue.js"></script>
+        <script src="https://cdn.jsdelivr.net/vue/2.0.0-rc/vue.min.js"></script>
+        <script src="https://cdn.ravenjs.com/3.21.0/vue/raven.min.js"
+    crossorigin="anonymous"></script>
+        <script>Raven.config('https://879905145a33410b8df3744d044e18bf@sentry.io/266524').install();</script>
+        <script src="lib/underscore-min.js"></script>
+        <script src="lib/minidb-0.1.js"></script>
+        <script src="core/word.js"></script>
+        <script src="core/exercise.js"></script>
+        <script src="sign.js"></script>
+        <script>
+            if (localStorage['email']){
+                window.location.replace("index.html");
+            }
+        </script>
+        <!-- Hotjar Tracking Code for everytian.com -->
+        <script>
+            (function(h,o,t,j,a,r){
+                h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+                h._hjSettings={hjid:737703,hjsv:6};
+                a=o.getElementsByTagName('head')[0];
+                r=o.createElement('script');r.async=1;
+                r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+                a.appendChild(r);
+            })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+        </script>
+	</head>
+	<body>
+		<div id='main_container'>
+		    <p class="pleco">Pleco is just a dictionary.</p>
+			<h1><span class="blue">Everytiān</span> is just to pass HSK exams.</h1>
+			<div class="signing_up">
+    			<div class="select">
+    				<div class="header">
+    					Select your HSK levels
+    				</div>
+    				<div class="selecting_level">
+    					<div class="hsk">
+    						<input type="checkbox" value="1" id="hsk_1">
+    						<label class="checkbox" for="hsk_1"><label for="hsk_1">HSK 1</label></label>
+    					</div>
+    					<div class="hsk">
+    						<input type="checkbox" value="2" id="hsk_2">
+    						<label class="checkbox" for="hsk_2"><label for="hsk_2">HSK 2</label></label>
+    					</div>
+    					<div class="hsk">
+    						<input type="checkbox" value="3" id="hsk_3">
+    						<label class="checkbox" for="hsk_3"><label for="hsk_3">HSK 3</label></label>
+    					</div>
+    					<div class="hsk">
+    						<input type="checkbox" value="4" id="hsk_4">
+    						<label class="checkbox" for="hsk_4"><label for="hsk_4">HSK 4</label></label>
+    					</div>
+    					<div class="hsk">
+    						<input type="checkbox" value="5" id="hsk_5">
+    						<label class="checkbox" for="hsk_5"><label for="hsk_5">HSK 5</label></label>
+    
+    					</div>
+    					<div class="hsk">
+    						<input type="checkbox" value="6" id="hsk_6">
+    						<label class="checkbox" for="hsk_6"><label for="hsk_6">HSK 6</label></label>
+    					</div>
+    				</div>
+    				<div class="button">
+    				    Start practicing
+                    </div>
+    			</div>
+    			<button class="change_method">or sign in</button>
+			</div>
+            <div class="login signing_in" style="display: none">
+                <label for="email">Email</label>
+                <input type="text" name="email" id="email" placeholder="你的电子邮件">
+                <div class="error" id="error_email"></div>
+                <label for="pass">Password</label>
+                <input type="password" id="pass" placeholder="你的密码">
+                <div class="error" id="error_pass"></div>
+                <button class="signup">Sign up</button>
+                <button class="change_method">or go back</button>
+            </div>
+
+			<div class="feature">
+				<div class="feature_img" id="instant_feedback"></div>
+				<p>Get instant feedback on your answers</p>
+			</div>
+			<div class="feature">
+				<div class="feature_img" id="track_words"></div>
+				<p>Keep track of challenging words</p>
+			</div>
+			<div class="feature">
+				<div class="feature_img" id="mobile_experience"></div>
+				<p>Practice on the go with a mobile first experience</p>
+			</div>
+			<div class="feature">
+				<div class="feature_img" id="track_progress"></div>
+				<p>Know exactly when you are ready to sit for the HSK</p>
+			</div>
+			<div class="feature">
+				<div class="feature_img" id="ai_advice"></div>
+				<p>Get AI advice specifically tailored for you</p>
+			</div>
+			<div id="auxiliary_img"></div>
+			<a id="contact_email" href="mailto:ezequiel@everytian.com">ezequiel@everytian.com</a>
+			<p id="final_note">Everytian 2018, Montevideo, Uruguay</p>
+		</div>
+	</body>
+</html>
