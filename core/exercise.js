@@ -15,7 +15,6 @@ class MultipleChoice {
 		this.options = multiple_choice_json.options; // the first option is the correct one by convention
 	}
 
-
 	DOM() {
 		var first = true;
 		var options = []	
@@ -362,7 +361,11 @@ class Exercise {
 		 	revise()
 		})
 		
-		// pleh.help('markWord')
+        if (this.type == 'multiple_choice' && this.exercise.audio) {
+            pleh.help('transcript')
+        } else {
+            pleh.help('markWord')
+        }
 
 	}
 

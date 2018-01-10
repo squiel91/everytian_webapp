@@ -11,7 +11,7 @@ var pass = localStorage['pass']
 
 var in_correction = false
 
-// pleh.messages = help_messages
+pleh.messages = help_messages
 
 var mdb = new MiniDB([Exercise, Word]);
 
@@ -323,16 +323,20 @@ function revise(exercise) {
             window.history.replaceState({}, '', '?');
             revise()
 	 	})
-        // switch(exercise.type) {
-        //     case 'multiple_choice':
-        //         pleh.help('MoChooseOption')
-        //         break;
-        //     case 'right_order':
-        //         pleh.help('rightOrder')
-        //         break;
-        //     case 'multiple_choice_embeded':
-        //         pleh.help('embeded')
-        // }
+        switch(exercise.type) {
+            case 'multiple_choice':
+                if (exercise.exercise.audio) {
+                    pleh.help('audio')
+                } else {
+                    pleh.help('MoChooseOption')
+                }
+                break;
+            case 'right_order':
+                pleh.help('rightOrder')
+                break;
+            case 'multiple_choice_embeded':
+                pleh.help('embeded')
+        }
 
 	} else {
         // If there is no level defined is because it comes from a redirection

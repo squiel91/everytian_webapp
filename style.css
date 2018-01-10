@@ -386,6 +386,7 @@ li.measures {
 
 .audio {
 	clear: both;
+    overflow: auto;
 }
 
 .audio .info_container {

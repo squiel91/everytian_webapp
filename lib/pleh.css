@@ -5,13 +5,12 @@ div.pleh {
     border-radius: 3pt;
     top: 0;
     left: 0;
-    padding: 10pt;
-    padding-left: 30pt;
+    padding: 0pt;
     -webkit-box-shadow: 0px 0px 15px 0px #ccc;
     box-shadow: 0px 0px 15px 0px #ccc;
     -moz-box-shadow: 0px 0px 15px 0px #ccc;
 
-    background-image: url(../img/close_social.png);
+    /*background-image: url(../img/close_social.png);*/
     background-size: 10pt;
     background-repeat: no-repeat;
     background-position: 10pt 13pt;
@@ -19,9 +18,20 @@ div.pleh {
 
 div.pleh p {
     font-size: medium;
+    padding: 10pt;
     margin: 0pt;
     line-height: 1.4em;
     color: gray;
+}
+
+div.pleh p.dismiss {
+    padding: 0pt;
+    margin: 0pt;
+    margin-top: -3pt;
+    margin-bottom: 5pt;
+    text-align: center;
+    font-size: small;
+    color: lightgray;
 }
 
 div.pleh button {
