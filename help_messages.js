@@ -1,7 +1,9 @@
 var help_messages = {
 	// General
 	checkProgress: {
-		text: 'You can press here to check your progress in real time',
+		message: 'Click on the bottom left to check your progress in real time.',
+		fixed: true,
+		container: '.exercise_container',
 		el: '#progress',
 		position: {
 			vertical: 'above',
@@ -10,7 +12,9 @@ var help_messages = {
 		next: 'checkSettings'
 	},
 	checkSettings: {
-		text: 'You can press here to mannage your settings.',
+		message: 'Click on the bottom right to mannage your settings and secure your progress.',
+		fixed: true,
+		container: '.exercise_container',
 		el: '#settings',
 		position: {
 			vertical: 'above',
@@ -19,23 +23,25 @@ var help_messages = {
 	},
 	// Words
 	markWord: {
-		text: 'Touch a word you are not sure about...',
+		message: 'Click on the word you are not sure about. Try it!',
+		container: '.exercise_container',
 		el: '.container_body',
 		position: {
-			vertical: 'bottom',
+			vertical: 'center',
 			horizontal: 'center'
 		},
 		next: 'checkProgress'
 	},
 	unmarkWord: {
-		text: 'Unmark a word you already feel familiar with.',
+		message: 'Unmark a word you already feel familiar with.',
 		el: ''
 	},
 	// Exercises
 	// MO
 	MoChooseOption: {
-		text: 'Choose the correct answer. Or try at least :)',
-		el: '.container_MO:first',
+		message: 'Choose the correct answer. Or try at least :)',
+		container: '.exercise_container',
+		el: '.option_container:first',
 		position: {
 			vertical: 'center',
 			horizontal: 'right'
@@ -43,7 +49,9 @@ var help_messages = {
 		next: 'check'
 	},
 	check: {
-		text: 'When you are ready press "CHECK".',
+		message: 'Whenever you are ready press "CHECK".',
+		container: '.exercise_container',
+		fixed: true,
 		el: '#practice',
 		position: {
 			vertical: 'above',
@@ -51,7 +59,8 @@ var help_messages = {
 		}
 	},
 	audio: {
-		text: 'Listen to the audio.',
+		message: 'Click on play to listen to the audio.',
+		container: '.exercise_container',
 		el: '.audio:first',
 		position: {
 			vertical: 'below',
@@ -60,7 +69,8 @@ var help_messages = {
 		next: 'audio_limited'
 	},
 	audio_limited: {
-		text: 'You have limited times to listen it so use them carefully!',
+		message: 'You have limited reproductions so listen carefully!',
+		container: '.exercise_container',
 		el: '.audio:first',
 		position: {
 			vertical: 'below',
@@ -69,7 +79,8 @@ var help_messages = {
 		next: 'MoChooseOption'
 	},
 	transcript: {
-		text: 'This is the transcript of the audio you just listened',
+		message: 'This is the transcript of the audio you just listened.',
+		container: '.exercise_container',
 		el: '.container_body',
 		position: {
 			vertical: 'center',
@@ -79,16 +90,19 @@ var help_messages = {
 	},
 	// Right order
 	rightOrder: {
-		text: 'Arrange the fragments in order to make sense.',
+		message: 'Drag the fragments in order to make sense.',
+		container: '.exercise_container',
 		el: '#segments_panel',
+		container: '',
 		position: {
-			vertical: 'top',
-			horizontal: 'right'
+			vertical: 'center',
+			horizontal: 'center'
 		}
 	},
 	// Embeded
 	embeded: {
-		text: 'Choose the correct option form the drop down.',
+		message: 'Choose the correct option form the drop down.',
+		container: '.exercise_container',
 		el: '.container_body',
 		position: {
 			vertical: 'top',

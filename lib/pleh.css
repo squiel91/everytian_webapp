@@ -1,5 +1,6 @@
 div.pleh {
-    width: 200px;
+    width: 200pt;
+    max-width: 100%;
     position: absolute;
     background-color: white;
     border-radius: 3pt;

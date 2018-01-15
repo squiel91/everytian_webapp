@@ -18,6 +18,10 @@
 		
 		<link rel="manifest" href="/manifest.json">
 		<script src="lib/jquery-3.2.1.min.js"></script>
+		
+		<script src="lib/pleh.js"></script>
+		<script src="help_messages.js"></script>
+
 		<script src="lib/vue.js"></script>
 		<script src="https://cdn.jsdelivr.net/vue/2.0.0-rc/vue.min.js"></script>
         <script src="https://cdn.ravenjs.com/3.21.0/vue/raven.min.js"
@@ -35,8 +39,6 @@
 		<script src="lib/jquery-ui.js"></script>
 		<script src="lib/convert_chinese.js"></script>
 
-		<script src="lib/pleh.js"></script>
-		<script src="help_messages.js"></script>
 		<link rel="stylesheet" type="text/css" href="lib/pleh.css">
 
 
@@ -168,6 +170,14 @@
 					<label class="checkbox" for="convert_trad"></label>Traditional writing</h1>
 				</div>
 				<p class="explanation">Switch between traditional and simplified writing.</p>
+			</div>
+
+			<div class="settings_section">
+				<div class="section_heading">
+				    <h1><input type="checkbox" id="help_active" onclick="display_help(event)">
+					<label class="checkbox" for="help_active"></label>Don't show tutorial</h1>
+				</div>
+				<!-- <p class="explanation">Disable itShow tutorial.</p> -->
 			</div>
 
 			<div class="settings_section just_logged">

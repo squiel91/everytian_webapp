@@ -73,37 +73,41 @@ $(() => {
             // $('.login').show()
         // } else {
 
-        var loader = $('<div class="loading_cover"><div class="loader"></div></div>')
-        $('body').append(loader);
-        for (var current_level of Object.keys(levels)) {
-            let requested_level = parseInt(current_level)
-            $.ajax({
-                type: "GET",
-                url: "api/exercises.php",
-                dataType: "json",
-                data: {'level': requested_level},
-                success: function (exercise_json) {
-                    $.each(exercise_json, function(index, exercise_json) {
-                        if (!mdb.get(Exercise, {'id': exercise_json.id})) {
-                            mdb.add(new Exercise(exercise_json));
+        try {
+            var loader = $('<div class="loading_cover"><div class="loader"></div></div>')
+            $('body').append(loader);
+            for (var current_level of Object.keys(levels)) {
+                let requested_level = parseInt(current_level)
+                $.ajax({
+                    type: "GET",
+                    url: "api/exercises.php",
+                    dataType: "json",
+                    data: {'level': requested_level},
+                    success: function (exercise_json) {
+                        $.each(exercise_json, function(index, exercise_json) {
+                            if (!mdb.get(Exercise, {'id': exercise_json.id})) {
+                                mdb.add(new Exercise(exercise_json));
+                            }
+                        });
+                        levels[requested_level] = true
+                        if (Object.keys(levels).reduce(function(partial, key) { return partial && levels[key]}, true)) {
+                            localStorage['levels'] = JSON.stringify(Object.keys(levels).map(l => parseInt(l)))
+                            window.location.replace("index.html")  
                         }
-                    });
-                    levels[requested_level] = true
-                    if (Object.keys(levels).reduce(function(partial, key) { return partial && levels[key]}, true)) {
-                        localStorage['levels'] = JSON.stringify(Object.keys(levels).map(l => parseInt(l)))
-                        window.location.replace("index.html")  
+                    },
+                    error: function (xhr, status, errorThrown) {
+                        loader.remove();
+                        errors = true;
+                        alert("Sorry! There was an error downloading the exercises. Can you try again?")
                     }
-                },
-                error: function (xhr, status, errorThrown) {
-                    loader.remove();
-                    errors = true;
-                    alert("Sorry! There was an error downloading the exercises. Can you try again?")
-                }
-            });
-        } 
-            
-            // $('.login').hide()
-        // }
+                });
+            } 
+                
+                // $('.login').hide()
+            // }
+        } catch (error) {
+            alert(error)
+        }
     })
 
     $('input').on("keydown", function(evt) {

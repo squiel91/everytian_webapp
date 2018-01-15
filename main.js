@@ -106,13 +106,31 @@ function change_traditional(evt) {
     converter.tranElement($('.exercise_container')[0], convert_trad)
 }
 
-$(() => {
 
-    $('#feedback_submit').click(feedback_submit)
-	docker = new Docker()
-    $('#anki').click(download_anki)
-	revise()
+// Display help
+$(() => {
+    if (localStorage['help_active'] == 'false') {
+        pleh.active = false
+        $('input#help_active').prop('checked', true)
+    }
 })
+
+function display_help(evt) {
+    pleh.active = !$(evt.target).prop('checked')
+    if (pleh.active) pleh.reset()
+    localStorage['help_active'] = pleh.active
+}
+
+/////////////////////////////////////////////////////
+
+$(() => {
+    $('#feedback_submit').click(feedback_submit)
+    docker = new Docker()
+    $('#anki').click(download_anki)
+    revise()
+})
+
+display_help
 
 // revise_recall()
 // setInterval(revise_recall, 5000, true)
@@ -166,15 +184,24 @@ function evolution(level) {
         section.find('.progress_bar').css('background-size', percentage + '%')
     }
 
-    function recommend(user_score, total_score) {
+    function recommend(user_score, total_score, progress_fraction) {
         var message = ''
-        if (total_score == 0) {
+        if (progress_fraction == 0) {
             message = 'Start practicing! It will get you closer to pass the exam :)'
         } else {
             if (user_score / total_score > 0.6) {
-                message = 'You are doing great!\nKeep practicing so we can advice you better.'
+                message = 'You are doing great!'
             } else {
-               message = 'You can do it better!\nKeep practicing so we can advice you better.'
+               message = 'You can do it better!'
+            }
+            if (progress_fraction < 0.6) {
+                message += '\nKeep practicing so we can advice you better.'
+            } else {
+                if (user_score / total_score > 0.6) {
+                    message += '\nYou seem qualified to sit for the exam :D'
+                } else {
+                   message += '\nYou need to study hard to pass the real exam :|'
+                }
             }
         }
         $('#advice')[0].innerText = message
@@ -223,7 +250,7 @@ function evolution(level) {
     progress('listening_score', user_score_listening, total_score_listening)
     progress('exercises_completed', done_exercises_qty, all_exercises_qty)
 
-    recommend(user_score, total_score)
+    recommend(user_score, total_score, done_exercises_qty / all_exercises_qty)
 }
 
 function valid_email(email) {

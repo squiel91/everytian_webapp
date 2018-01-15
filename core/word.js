@@ -109,7 +109,7 @@ class Word {
 		if (this.container) {
 			this.container.hanzi = this.hanzi,
 		    this.container.pinyin = this.pinyin,
-		    this.container.url_audio = this.audio,
+		    this.container.audio = this.audio,
 		    this.container.translations = this.translations,
 		    this.container.measure = this.measure,
 		    this.container.examples = this.examples,
@@ -228,10 +228,10 @@ class Word {
 			template: `
 			<div id="word_explanation">
 				<div class="hanzi">
-					{{ show_hanzi }}				
-					<span class="audio_cool" v-if="audio" v-on:click="play">
-						<audio v-if="audio" v-bind:src="audio_url" autoplay></audio>
-					</span>
+					{{ show_hanzi }}
+					<span class="audio_cool" v-if="!fetching_error && !fetching && audio" v-on:click="play">
+						<audio v-bind:src="audio_url" autoplay></audio>
+					</span>				
 				</div>
 				<template v-if="fetching_error">
 					<div class="fetching">Ups! We coudn't find the word.</div>

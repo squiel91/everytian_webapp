@@ -5,7 +5,7 @@
             return true;
     }
 
-    if(is_localhost()){
+    if(true) {//is_localhost()){
         $db_server = 'localhost';
         $db_user = 'root';
         $db_pass = 'jaguar';
